@@ -1,0 +1,44 @@
+###
+GET http://127.0.0.1:8000/questions/
+Accept: application/json
+
+### 
+POST http://127.0.0.1:8000/questions/
+Content-Type: application/json
+
+{
+    "title": "power of a number",
+    "language":"java" ,
+    "difficulty_level": "easy",
+    "topic": "loops",
+    "notes": "This question is about calculating the power of a given number using loops.",
+    "sample_input": "Sample input for the question",
+    "sample_output": "Sample output for the question",
+    "is_active": true
+
+}
+
+###
+GET http://127.0.0.1:8000/questions/5/
+Accept: application/json
+
+
+### 
+PUT http://127.0.0.1:8000/questions/3/
+Content-Type: application/json
+
+{
+    "title": "Prime number",
+    "language":"python" ,
+    "difficulty_level": "easy",
+    "topic": "loops",
+    "notes": "Check whether the given number is prime or not.",
+    "sample_input": 10,
+    "sample_output": "not prime",
+    "is_active": true
+
+}
+
+
+###
+DELETE http://127.0.0.1:8000/questions/5/
