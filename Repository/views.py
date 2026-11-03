@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from Repository.models import QuestionsDb
-from Repository.serializers import QuestionSerializer
+from Repository.models import QuestionsDb,SubmissionsDb
+from Repository.serializers import QuestionSerializer,SubmissionSerializer
 # Create your views here.
 
 class QuestionListCreateView(APIView):
@@ -57,4 +57,71 @@ class RetrievalUpdateDeleteView(APIView):
         return Response({
             "Message":'Question deleted successfully.....'
         })
+
+
+class SubmissionCreateListView(APIView):
+    def get(self,request):
+
+        qs = SubmissionsDb.objects.all()
+
+        submission_instance = SubmissionSerializer(qs,many=True)
+
+        return Response(data=submission_instance.data)
+  
+    def post(self,request):
+
+        form_data = request.data
+
+        submission_instance = SubmissionSerializer(data=form_data)
+
+        if submission_instance.is_valid():
+
+            actual_data = submission_instance.validated_data
+            SubmissionsDb.objects.create(**actual_data)
+            return Response({"Message":"Answer added successfully...."})
+        else:
+            return Response(data={'errors':submission_instance.errors})
+
+
+class SubmissionRetrieveUpdateDeleteView(APIView):
+    
+    def get(self,request,qid):
        
+        # qs = SubmissionsDb.objects.get(id=qid)
+
+        qs = get_object_or_404(SubmissionsDb,id=qid)
+
+        submission_instance = SubmissionSerializer(qs)
+
+        return Response(data=submission_instance.data)
+
+    def put(self,request,qid):
+
+        form_data = request.data
+
+        submission_instance = SubmissionSerializer(data=form_data)
+
+        if submission_instance.is_valid():
+
+            actual_data = submission_instance.validated_data
+            SubmissionsDb.objects.filter(id=qid).update(**actual_data)
+            return Response({"Message":"Answer updated successfully...."})
+        else:
+            return Response(data = submission_instance.errors)
+    
+    def delete(self,request,qid):
+
+        SubmissionsDb.objects.filter(id=qid).delete()
+        return Response({"Message":"Submission deleted successfully..."})
+
+
+class EvaluateSubmissionView(APIView):
+    def put(self,request,qid):
+
+        form_data = request.data
+
+        SubmissionsDb.objects.filter(id=qid).update(**form_data)
+
+        return Response(data={
+            "Message":"Updated....!"
+        })

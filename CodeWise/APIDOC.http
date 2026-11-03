@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://127.0.0.1:8000/questions/5/
+GET http://127.0.0.1:8000/questions/3/
 Accept: application/json
 
 
@@ -42,3 +42,51 @@ Content-Type: application/json
 
 ###
 DELETE http://127.0.0.1:8000/questions/5/
+
+
+#submission handling
+
+###
+GET http://127.0.0.1:8000/submissions/
+Accept: application/json
+
+
+###
+POST http://127.0.0.1:8000/submissions/
+Content-Type: application/json
+
+{
+    "question_id": 6,
+    "answer":"power = num **2",
+    "owner":"nandana"
+}
+
+###
+GET http://127.0.0.1:8000/submissions/3/
+Accept: application/json
+
+
+###
+PUT http://127.0.0.1:8000/submissions/3/
+Content-Type: application/json
+
+{
+    "question_id": 3,
+    "answer":"5 is a prime number",
+    "owner":"nandana"
+}
+
+
+###
+DELETE http://127.0.0.1:8000/submissions/4/
+
+
+
+###
+PUT http://127.0.0.1:8000/submissions/3/evaluate/
+Content-Type: application/json
+
+{
+    "points": 4,
+    "remarks": "above average..."
+}

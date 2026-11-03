@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class QuestionsDb(models.Model):
+    
     title = models.CharField(max_length=200)
     LANGUAGE_CHOICES = (
         ("python","Python"),
@@ -28,3 +29,19 @@ class QuestionsDb(models.Model):
     published_date = models.DateTimeField(auto_now_add =True)
 
     is_active = models.BooleanField(default=True)
+
+
+
+class SubmissionsDb(models.Model):
+
+    question_id = models.IntegerField()
+
+    answer = models.TextField()
+
+    points = models.PositiveIntegerField(null=True,blank=True)
+
+    owner = models.CharField(max_length=100)
+
+    submission_date = models.DateTimeField(auto_now_add=True)
+
+    remarks = models.TextField(null=True,blank=True)
