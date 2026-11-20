@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class QuestionsDb(models.Model):
@@ -40,7 +41,7 @@ class SubmissionsDb(models.Model):
 
     points = models.PositiveIntegerField(null=True,blank=True)
 
-    owner = models.CharField(max_length=100)
+    owner = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True,related_name="submissions")
 
     submission_date = models.DateTimeField(auto_now_add=True)
 

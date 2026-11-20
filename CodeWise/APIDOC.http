@@ -1,4 +1,39 @@
 ###
+POST http://127.0.0.1:8000/register/
+Content-Type: application/json
+
+{
+    "username":"vandana",
+    "email":"van@gmail.com",
+    "password":"vand@123"
+}
+
+###
+GET http://127.0.0.1:8000/register/
+Accept: application/json
+
+# jwt login
+
+###
+POST http://127.0.0.1:8000/jwt_login/
+Content-Type: application/json
+
+{
+    "username":"vandana",
+    "password":"vand@123"   
+}
+
+
+###
+POST http://127.0.0.1:8000/jwt_refresh/
+Content-Type: application/json
+
+{
+   "refresh":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5NTI3ODY0MywiaWF0IjoxNzk1MTkyMjQzLCJqdGkiOiJlMjE0N2E1MWUzNDQ0ZTA3YWJhNDczNGViOGFmZWQwOSIsInVzZXJfaWQiOiIyIn0.xTNYYg_ieSR69T_CTyhEt3IThvWNJwyrjI-0fJydaIk"
+}
+
+
+###
 GET http://127.0.0.1:8000/questions/
 Accept: application/json
 
@@ -49,36 +84,40 @@ DELETE http://127.0.0.1:8000/questions/5/
 ###
 GET http://127.0.0.1:8000/submissions/
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTk2MzE1LCJpYXQiOjE3OTUxOTYwMTUsImp0aSI6IjhmMDcxMzI0NTA3YzRmNzY5NmVkMTA0NDQ0OGQxZTFjIiwidXNlcl9pZCI6IjIifQ.H538iN3m2CakqEZcfPzoKlC-8BZ_t9-DEXshCHNiW0s
 
 
 ###
 POST http://127.0.0.1:8000/submissions/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTk2MzE1LCJpYXQiOjE3OTUxOTYwMTUsImp0aSI6IjhmMDcxMzI0NTA3YzRmNzY5NmVkMTA0NDQ0OGQxZTFjIiwidXNlcl9pZCI6IjIifQ.H538iN3m2CakqEZcfPzoKlC-8BZ_t9-DEXshCHNiW0s
 
 {
     "question_id": 6,
-    "answer":"power = num **2",
-    "owner":"nandana"
+    "answer":"power = num **2"
 }
 
 ###
-GET http://127.0.0.1:8000/submissions/3/
+GET http://127.0.0.1:8000/submissions/7/
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTk2MzE1LCJpYXQiOjE3OTUxOTYwMTUsImp0aSI6IjhmMDcxMzI0NTA3YzRmNzY5NmVkMTA0NDQ0OGQxZTFjIiwidXNlcl9pZCI6IjIifQ.H538iN3m2CakqEZcfPzoKlC-8BZ_t9-DEXshCHNiW0s
 
 
 ###
-PUT http://127.0.0.1:8000/submissions/3/
+PUT http://127.0.0.1:8000/submissions/8/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTk2MzE1LCJpYXQiOjE3OTUxOTYwMTUsImp0aSI6IjhmMDcxMzI0NTA3YzRmNzY5NmVkMTA0NDQ0OGQxZTFjIiwidXNlcl9pZCI6IjIifQ.H538iN3m2CakqEZcfPzoKlC-8BZ_t9-DEXshCHNiW0s
+
 
 {
     "question_id": 3,
-    "answer":"5 is a prime number",
-    "owner":"nandana"
+    "answer":"5 is a prime number"
 }
 
 
 ###
-DELETE http://127.0.0.1:8000/submissions/4/
+DELETE http://127.0.0.1:8000/submissions/9/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzk1MTk2MzE1LCJpYXQiOjE3OTUxOTYwMTUsImp0aSI6IjhmMDcxMzI0NTA3YzRmNzY5NmVkMTA0NDQ0OGQxZTFjIiwidXNlcl9pZCI6IjIifQ.H538iN3m2CakqEZcfPzoKlC-8BZ_t9-DEXshCHNiW0s
 
 
 
@@ -90,3 +129,5 @@ Content-Type: application/json
     "points": 4,
     "remarks": "above average..."
 }
+
+# ----

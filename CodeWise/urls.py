@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Repository import views
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,8 @@ urlpatterns = [
     path('submissions/',views.SubmissionCreateListView.as_view()),
     path('submissions/<qid>/',views.SubmissionRetrieveUpdateDeleteView.as_view()),
     path('submissions/<qid>/evaluate/',views.EvaluateSubmissionView.as_view()),
+
+    path('register/',views.RegistrationView.as_view()),
+    path('jwt_login/',TokenObtainPairView.as_view()),
+    path('jwt_refresh/',TokenRefreshView.as_view()),
 ]
